@@ -1,0 +1,20 @@
+<div class="login">
+    <div class="container" >
+        <h2>Log In</h2>
+        <form (ngSubmit)="onLogin()">
+          <mat-form-field  style="width: 100%;">
+            <mat-label>Email</mat-label>
+            <input matInput id="email" [(ngModel)]="email" name="email" required>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Password</mat-label>
+            <input matInput id="password" [(ngModel)]="password" name="password" required>
+          </mat-form-field>
+          <div *ngIf="loginError" class="error">
+           * {{loginError}}
+          </div>
+          <button mat-raised-button class="LoginButton" type="submit"  [ngStyle]="{'margin-top': loginError ? '6px' : '20px'}">Log In</button>
+        </form>
+        <button mat-button type="button" class="UserButton" style="color: white;"  (click)="navigateToUserLogin()" >Kullanıcı olarak giriş yap</button>
+      </div>
+    </div>

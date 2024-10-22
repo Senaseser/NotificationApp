@@ -1,0 +1,31 @@
+.toolbar{
+    background-color: brown;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+   padding-left: 140px;
+   padding-right: 140px;
+   width: 100%;
+   position: fixed;
+   top: 0;
+   z-index: 100;
+
+}
+.title {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 10px;
+}
+
+.profileButton{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: small;
+}
+.navbar_icon{
+    color: brown;
+}

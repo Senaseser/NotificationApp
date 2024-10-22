@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Kullanıcıyı Sil</h2>
+<mat-dialog-content>
+<div>"{{data.userName}}" adlı kullanıcı silenecek. Emin misiniz?</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>İptal</button>
+  <button mat-button (click) = "handleDelete()">Evet, sil</button>
+</mat-dialog-actions>

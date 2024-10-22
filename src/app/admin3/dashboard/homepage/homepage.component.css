@@ -1,0 +1,33 @@
+.container{
+    margin-top: 80px;
+    width: 100%;
+    height: 100%;
+}
+.table{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+.addButton{
+    width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;  
+  margin-right: 35%;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+.online{
+  color: green;
+  background-color: green;
+
+}
+.offline{
+  color: red;
+  background-color: red;
+}
+:host{
+  display: flex;
+justify-content: center;
+}

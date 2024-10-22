@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="table">
+        <div  class="addButton">
+        <button mat-fab extended (click) ="addUser()">
+            <mat-icon>add</mat-icon>
+            Add
+          </button>
+          <button mat-fab extended (click) ="sendNotification()" [disabled]="selectedUser.length === 0">
+            <mat-icon>notifications</mat-icon>
+            Send
+          </button>
+        </div>
+        <ag-grid-angular 
+        class="ag-theme-quartz" style="width: 820px;height: 500px;" 
+        [rowData]="rowData"       
+        [columnDefs]="columnDefs"
+        [rowSelection]="rowSelection"
+        [rowClassRules] = "rowClassRules"
+        [defaultColDef]="defaultColDef"
+        (gridReady)="onGridReady($event)"
+        [pagination]="true"
+        [paginationPageSize]="paginationPageSize"
+        [paginationPageSizeSelector]="paginationPageSizeSelector"
+        (selectionChanged)="onSelectionChanged()"
+        [class] ="themeClass" ></ag-grid-angular>
+        </div>
+    </div>

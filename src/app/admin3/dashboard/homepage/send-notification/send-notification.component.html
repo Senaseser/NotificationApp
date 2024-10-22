@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Bildirim Gönder</h2>
+
+<mat-dialog-content>
+  <form>
+    <mat-form-field style="width: 100%;">
+      <mat-label>Başlık</mat-label>
+      <input matInput id="title" [(ngModel)]="title" name="title" required />
+    </mat-form-field>
+    <mat-form-field style="width: 100%;">
+        <mat-label>İçerik</mat-label>
+        <input matInput id="content" [(ngModel)]="content" name="content" required />
+      </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<div *ngIf="content" class="error">
+* {{content}}
+ </div>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>İptal</button>
+  <button mat-button (click) = "handleSend()">Gönder</button>
+</mat-dialog-actions>

@@ -1,0 +1,7 @@
+.error{
+    color: brown;
+    text-decoration: solid;
+    font-size: 0.75rem;
+    margin-left: 20px;
+    margin-top: 0px !important;
+  }
