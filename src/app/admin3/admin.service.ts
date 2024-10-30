@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, tap } from 'rxjs';
-import { User } from '../models/userResponse';
-import { Login } from '../models/loginResponse';
+import { AddUser, User } from '../models/userResponse';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../environment/environment';
 
@@ -23,12 +22,12 @@ export class AdminService {
   
     return this.http.get<User[]>(`${this.apiUrl}/Operations/GetUsers`,{headers});
   }
-  addUser(email:string,password:string):Observable<Login> {
+  addUser(email:string,password:string):Observable<AddUser> {
     const token = this.cookieService.get('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<Login>(`${this.apiUrl}/Operations/Register`,{email,password},{headers}).pipe(
+    return this.http.post<AddUser>(`${this.apiUrl}/Operations/Register`,{email,password},{headers}).pipe(
       tap(response => {
-        if (response && response.token && response.role && response.mail && response.id) {
+        if (response && response.mail && response.id) {
           this.snackBar.open('Kullanıcı eklendi!', 'Kapat', {
             duration: 2000, 
             verticalPosition: 'bottom', 
@@ -62,6 +61,22 @@ export class AdminService {
       tap(response => {
         if (response && response.message === "Delete successfully"  ) {
           this.snackBar.open('Kullanıcı silindi!', 'Kapat', {
+            duration: 2000, 
+            verticalPosition: 'bottom', 
+            horizontalPosition: 'center' 
+          });
+        }
+      }
+    ))
+  }
+  sendMessage(title:string,message:string,userIds:string[]):Observable<any> {
+    const token = this.cookieService.get('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    return this.http.post<any>(`${this.apiUrl}/Notification/Send`,{title,message,userIds},{headers}).pipe(
+      tap(response => {
+        if (response && response.message === "Bildirim gönderme işlemi tamamlandı"  ) {
+          this.snackBar.open('Bildirim gönderme işlemi tamamlandı!', 'Kapat', {
             duration: 2000, 
             verticalPosition: 'bottom', 
             horizontalPosition: 'center' 

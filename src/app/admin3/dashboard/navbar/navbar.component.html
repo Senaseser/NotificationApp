@@ -3,7 +3,9 @@
         <mat-icon>notifications_active</mat-icon>
         <span >NotifyEase</span>
     </div>
-    <button mat-button [matMenuTriggerFor]="menu">   <div class="profileButton"><mat-icon class="profileIcon">account_circle</mat-icon>{{profile}}</div></button>
+    <div class="rightSide">
+       <a routerLink="/admin/notifications" class="rightSide"><mat-icon>mail_outline</mat-icon></a>
+    <button mat-button [matMenuTriggerFor]="menu">   <div class="profileButton"><mat-icon class="profileIcon">account_circle</mat-icon>{{profile}}</div></button></div>
     <mat-menu #menu="matMenu">
 
     <button class="navbar_icon" mat-menu-item routerLinkActive="router-link-active"  (click) ="logout()">Log Out</button>

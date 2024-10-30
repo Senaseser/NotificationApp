@@ -1,0 +1,28 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container">
+    
+<div class="table">
+    <div class="leftSide">
+    <button mat-button class="backButton" routerLink="/admin/dashboard"> 
+        <mat-icon >arrow_back</mat-icon></button>
+        <mat-form-field style="width: 400px;">
+            <mat-label>Bildirim Seçin</mat-label>
+            <mat-select>
+              @for (notification of notifications; track notification) {
+                <mat-option [value]="notification.value">{{notification.value}}</mat-option>
+              }
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <ag-grid-angular 
+    class="ag-theme-quartz" style="width: 820px;height: 500px;" 
+    [rowData]="rowData"       
+    [columnDefs]="columnDefs"
+    [rowClassRules] = "rowClassRules"
+    [defaultColDef]="defaultColDef"
+    [pagination]="true"
+    [paginationPageSize]="paginationPageSize"
+    [paginationPageSizeSelector]="paginationPageSizeSelector"
+    [class] ="themeClass" ></ag-grid-angular>
+</div>
+</div>

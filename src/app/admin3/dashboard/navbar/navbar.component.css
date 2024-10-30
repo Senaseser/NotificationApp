@@ -17,6 +17,13 @@
     align-items: center;
     gap: 10px;
 }
+.rightSide{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
 
 .profileButton{
     color: white;

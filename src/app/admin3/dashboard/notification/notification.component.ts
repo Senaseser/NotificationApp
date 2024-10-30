@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {ColDef,CellClassRules,GridApi,RowClassRules, RowSelectionOptions} from "ag-grid-community"
 import "ag-grid-community/styles/ag-grid.css"
 import "ag-grid-community/styles/ag-theme-quartz.css"
@@ -7,17 +7,15 @@ import * as signalR from '@microsoft/signalr';
 
 import { AdminService } from '../../admin.service';
 import { RowData, User } from '../../../models/userResponse';
-import { RegisterModalComponent } from './register-modal/register-modal.component';
-import { ActionsComponent } from './actions/actions.component';
-import { SendNotificationComponent } from './send-notification/send-notification.component';
 import { CookieService } from 'ngx-cookie-service';
 
+
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.css'
+  selector: 'app-notification',
+  templateUrl: './notification.component.html',
+  styleUrl: './notification.component.css'
 })
-export class HomePageComponent implements OnInit {
+export class NotificationComponent {
   users:User[] = [];
   rowData:RowData[] = [];
   newUsername: string = "";
@@ -26,6 +24,7 @@ export class HomePageComponent implements OnInit {
   themeClass: string = "ag-theme-quartz";
   selectedUser:RowData[] = [];
   hubConnection!: signalR.HubConnection ;
+  notifications:any = [{value:"bir"},{value:"iki"},{value:"üç"},{value:"dört"},{value:"beş"},{value:"altı"}];
 
   constructor(private adminService:AdminService,public dialog: MatDialog,private cookieService: CookieService) {
 
@@ -52,15 +51,6 @@ export class HomePageComponent implements OnInit {
         filter:false,
         cellRenderer: (params:any) => params.value ? `<div style="color:green;display:flex;justify-content:center;font-weight:bold">Online</div>` : `<div style="color:red;display:flex;justify-content:center;font-weight:bold">Offline</div>`, 
     },
-    {
-      headerName:"Actions",
-      cellRenderer:ActionsComponent,
-      cellRendererParams:{
-        refreshUsers:()=> this.getUsers()
-      },
-      sortable:false,
-      filter:false,
-    }
 
     ];
     defaultColDef: ColDef = {
@@ -68,34 +58,14 @@ export class HomePageComponent implements OnInit {
       floatingFilter: true,
       flex: 1,
     };
-  rowSelection: RowSelectionOptions | "single" | "multiple" = {
-    mode: "multiRow",
-    headerCheckbox: true,
-  };
+ 
 rowClassRules: RowClassRules = {
     "rag-red": (params) => params.data.make === "Ford",
   };
  paginationPageSize = 10;
  paginationPageSizeSelector: number[] | boolean = [5,10, 15, 20];
 
- onGridReady(params: any) {
-  this.gridApi = params.api as GridApi<RowData>;
-}
-onSelectionChanged(){
-  this.selectedUser = this.gridApi.getSelectedRows();
-}
-sendNotification(){
-  const dialogRef = this.dialog.open(SendNotificationComponent, {
-    width: '400px',
-    data: {
-      selectedUser: this.selectedUser, 
-    }
-  });
-  dialogRef.afterClosed().subscribe(result => {
-    this.gridApi.deselectAll();
-    this.selectedUser = [];
-  });
-  }
+
   startConnection(){
   this.hubConnection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44365/notificationHub").configureLogging(signalR.LogLevel.Information).build();
   this.hubConnection.start()
@@ -146,14 +116,5 @@ this.hubConnection.on('UserOffline', (userId: string) => {
     })
   }
   
-  addUser(){
-    const dialogRef = this.dialog.open(RegisterModalComponent, {
-      width: '400px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-     this.getUsers();
-    });
-    }
   }
     

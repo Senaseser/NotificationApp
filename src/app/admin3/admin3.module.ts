@@ -21,6 +21,8 @@ import { UpdateUserComponent } from './dashboard/homepage/actions/update-user/up
 import { DeleteUserComponent } from './dashboard/homepage/actions/delete-user/delete-user.component';
 import { SendNotificationComponent } from './dashboard/homepage/send-notification/send-notification.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NotificationComponent } from './dashboard/notification/notification.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ActionsComponent,
     UpdateUserComponent,
     DeleteUserComponent,
-    SendNotificationComponent
+    SendNotificationComponent,
+    NotificationComponent,
+
   ],
   imports: [
     CommonModule,
@@ -47,6 +51,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDialogModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    MatSelectModule
   ]
 })
 export class Admin3Module { }

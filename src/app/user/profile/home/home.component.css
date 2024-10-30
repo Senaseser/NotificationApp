@@ -1,0 +1,46 @@
+.notification-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 80px;
+  }
+  
+  .notification-header {
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: start;
+    color: brown;
+    margin-bottom: 20px;
+  }
+  
+  .notification-card {
+    margin: 20px 0;
+  }
+  
+  mat-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  mat-card:hover {
+    transform: scale(1.005);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .card-content {
+    font-size: 1rem;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

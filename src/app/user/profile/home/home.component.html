@@ -1,0 +1,9 @@
+<div class="notification-container">
+  <div class="notification-header">📩 {{notifications.length}} yeni mesaj</div>
+  <div *ngFor="let notification of notifications" class="notification-card">
+    <mat-card appearance="outlined">
+      <mat-card-header class="card-header">{{notification.title}}</mat-card-header>
+      <mat-card-content class="card-content">{{notification.message}}</mat-card-content>
+    </mat-card>
+  </div>
+</div>

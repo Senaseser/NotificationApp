@@ -8,12 +8,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { HomeComponent } from './profile/home/home.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +25,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    MatSnackBarModule
   ]
 })
 export class UserModule { }

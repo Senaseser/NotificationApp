@@ -5,12 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import {CookieService } from 'ngx-cookie-service';
 import { Login } from '../../models/loginResponse';
+import { environment } from '../../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-private readonly apiUrl = "https://localhost:44365/admin/Admin/Login";
+  private url = environment.url;
 
   constructor(private router: Router,
     private http:HttpClient,
@@ -18,7 +19,7 @@ private readonly apiUrl = "https://localhost:44365/admin/Admin/Login";
   ) { }
 
   login(email: string, password: string): Observable<Login> {
-   return this.http.post<Login>(this.apiUrl,{email,password}).pipe(
+   return this.http.post<Login>(`${this.url}/admin/Admin/Login`,{email,password}).pipe(
     tap(response => {
       if (response && response.token && response.role && response.mail && response.id) {
         var expiration = new Date(Date.now()+ 60*60*1000);
@@ -40,9 +41,7 @@ private readonly apiUrl = "https://localhost:44365/admin/Admin/Login";
     this.cookieService.delete('mail', '/admin');
     this.cookieService.delete('id', '/admin');
 
-    this.router.navigate(['/admin/login']).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate(['/admin/login']);
   }
   isLoggedIn(): boolean {
     return this.cookieService.check('token');
